@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,8 +16,6 @@
         // Convert inputs to Date objects
         var goalDate = new Date(goalDateInput).getTime();
         var current = new Date(currentDateInput).getTime();
-        // var goalDate = new Date("April 15, 2024");
-        // var current = new Date("13, November 2023 10:00:00");
         var diff = Math.floor((goalDate - current) / 1000);
 
         var signage = "";
