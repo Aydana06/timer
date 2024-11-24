@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun with Timeouts</title>
+    <script type="text/javascript">
+      function timeSince() {
+        // Assumes: document.CountForm.countdown exists in the page
+        // Results: every second, recursively writes current countdown in the box
+        var goalDateInput = window.prompt("Enter Goal Date (YYYY-MM-DD):");
+        var currentDateInput = window.prompt(
+          "Enter Current Date (YYYY-MM-DD):"
+        );
+
+        // Convert inputs to Date objects
+        var goalDate = new Date(goalDateInput).getTime();
+        var current = new Date(currentDateInput).getTime();
+        // var goalDate = new Date("April 15, 2024");
+        // var current = new Date("13, November 2023 10:00:00");
+        var diff = Math.floor((goalDate - current) / 1000);
+
+        var signage = "";
+        if (diff < 0) {
+          diff *= -1;
+          signage = "-";
+        }
+
+        var days = Math.floor(diff / 86400);
+        diff -= days * 86400;
+        var hours = Math.floor(diff / 3600);
+        diff -= hours * 3600;
+        var minutes = Math.floor(diff / 60);
+        diff -= minutes * 60;
+
+        document.forms["CountForm"].countdown.value =
+          signage +
+          days +
+          " " +
+          (days, "day") +
+          ",\n" +
+          hours +
+          " " +
+          (hours, "hour") +
+          ",\n" +
+          minutes +
+          " " +
+          (minutes, "minute") +
+          ",\n" +
+          diff +
+          " " +
+          (diff, "second");
+        setTimeout("timeSince();", 10000000);
+      }
+      clearTimeout();
+    </script>
+  </head>
+
+  <body onload="timeSince();">
+    <form name="CountForm">
+      <div style="text-align: center">
+        Xeden honog ungursuniig har <br />
+        <textarea
+          name="countdown"
+          rows="“4”"
+          cols="“15”"
+          style="font-family: Courier"
+          onfocus="blur();"
+        ></textarea>
+      </div>
+    </form>
+  </body>
+</html>
